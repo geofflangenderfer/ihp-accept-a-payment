@@ -1,22 +1,19 @@
-CREATE FUNCTION set_updated_at_to_now() RETURNS TRIGGER AS $$
-BEGIN
+CREATE FUNCTION set_updated_at_to_now() RETURNS TRIGGER AS $$BEGIN
     NEW.updated_at = NOW();
     RETURN NEW;
-END;
-$$ language plpgsql;
--- Your database schema. Use the Schema Designer at http://localhost:8001/ to add some tables.
+END;$$ language PLPGSQL;
 CREATE TABLE users (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
     subscription_status TEXT DEFAULT '' NOT NULL,
     stripe_identifier TEXT DEFAULT '' NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );
 CREATE TABLE subscriptions (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
     user_id UUID NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     plan TEXT DEFAULT '' NOT NULL,
     price REAL NOT NULL,
     recurring TEXT DEFAULT '' NOT NULL

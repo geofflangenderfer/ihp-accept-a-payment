@@ -8,3 +8,13 @@ data WebApplication = WebApplication deriving (Eq, Show)
 
 
 data StaticController = WelcomeAction deriving (Eq, Show, Data)
+
+data SubscriptionController
+    = SubscriptionsAction
+    | NewSubscriptionAction
+    | ShowSubscriptionAction { subscriptionId :: !(Id Subscription) }
+    | CreateSubscriptionAction
+    | EditSubscriptionAction { subscriptionId :: !(Id Subscription) }
+    | UpdateSubscriptionAction { subscriptionId :: !(Id Subscription) }
+    | DeleteSubscriptionAction { subscriptionId :: !(Id Subscription) }
+    deriving (Eq, Show, Data)
