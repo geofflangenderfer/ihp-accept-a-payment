@@ -6,11 +6,9 @@ import Generated.Types
 
 data WebApplication = WebApplication deriving (Eq, Show)
 
-
-data StaticController = WelcomeAction deriving (Eq, Show, Data)
-
 data SubscriptionController
-    = SubscriptionsAction
+    = SubscribeAction
+    | SubscriptionsAction
     | NewSubscriptionAction
     | ShowSubscriptionAction { subscriptionId :: !(Id Subscription) }
     | CreateSubscriptionAction

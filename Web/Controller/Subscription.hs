@@ -5,11 +5,11 @@ import Web.View.Subscription.Index
 import Web.View.Subscription.New
 import Web.View.Subscription.Edit
 import Web.View.Subscription.Show
+import Web.View.Static.Subscribe (SubscribeView)
+
 
 instance Controller SubscriptionController where
-    action SubscriptionsAction = do
-        subscription <- query @Subscription |> fetch
-        render IndexView { .. }
+    action SubscribeAction = render $ SubscribeView {}
 
     action NewSubscriptionAction = do
         let subscription = newRecord
