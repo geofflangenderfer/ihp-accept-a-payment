@@ -15,10 +15,10 @@ defaultLayout inner = [hsx|
     <head>
         {metaTags}
 
-        {stylesheets}
-        {scripts}
-
-        <title>{pageTitleOrDefault "App"}</title>
+        <title>{pageTitleOrDefault "Stripe Checkout Sample"}</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        {cssJs}
+        {oldScripts}
     </head>
     <body>
         <div class="container mt-4">
@@ -29,19 +29,19 @@ defaultLayout inner = [hsx|
 </html>
 |]
 
--- The 'assetPath' function used below appends a `?v=SOME_VERSION` to the static assets in production
--- This is useful to avoid users having old CSS and JS files in their browser cache once a new version is deployed
--- See https://ihp.digitallyinduced.com/Guide/assets.html for more details
+--- The 'assetPath' function used below appends a `?v=SOME_VERSION` to the static assets in production
+--- This is useful to avoid users having old CSS and JS files in their browser cache once a new version is deployed
+--- See https://ihp.digitallyinduced.com/Guide/assets.html for more details
 
-stylesheets :: Html
-stylesheets = [hsx|
-        <link rel="stylesheet" href={assetPath "/vendor/bootstrap-5.2.1/bootstrap.min.css"}/>
-        <link rel="stylesheet" href={assetPath "/vendor/flatpickr.min.css"}/>
-        <link rel="stylesheet" href={assetPath "/app.css"}/>
-    |]
+cssJs :: Html
+cssJs = [hsx|
+    <link rel="stylesheet" href={assetPath "/normalize.css"} />
+    <link rel="stylesheet" href={assetPath "/global.css"} />
+    <script src="./success.js" defer></script>
+|]
 
-scripts :: Html
-scripts = [hsx|
+oldScripts :: Html
+oldScripts = [hsx|
         {when isDevelopment devScripts}
         <script src={assetPath "/vendor/jquery-3.6.0.slim.min.js"}></script>
         <script src={assetPath "/vendor/timeago.js"}></script>
@@ -66,9 +66,9 @@ metaTags :: Html
 metaTags = [hsx|
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta property="og:title" content="App"/>
+    <meta property="og:title" content="Stripe Checkout Sample"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="TODO"/>
-    <meta property="og:description" content="TODO"/>
+    <meta property="og:description" content="a stripe haskell example"/>
     {autoRefreshMeta}
 |]
