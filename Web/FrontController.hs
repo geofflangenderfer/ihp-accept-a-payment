@@ -10,7 +10,7 @@ import Web.Controller.Static
 
 instance FrontController WebApplication where
     controllers = 
-        [ -- startPage SubscribeAction
+        [ startPage SubscribeAction
         -- Generator Marker
         , parseRoute @SubscriptionController
         ]

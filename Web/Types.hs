@@ -5,10 +5,10 @@ import IHP.ModelSupport
 import Generated.Types
 
 data WebApplication = WebApplication deriving (Eq, Show)
+data StaticController = SubscribeAction deriving (Eq, Show, Data)
 
 data SubscriptionController
-    = SubscribeAction
-    | SubscriptionsAction
+    = SubscriptionsAction
     | NewSubscriptionAction
     | ShowSubscriptionAction { subscriptionId :: !(Id Subscription) }
     | CreateSubscriptionAction
